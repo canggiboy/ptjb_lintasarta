@@ -265,7 +265,8 @@
                                                     <div class="col-md-8 col-md-offset-2">
                                                         <div class="form-group">
                                                             <label class="control-label">NIK</label>
-                                                            <input type="text" name="nik1" id="nik" class="form-control">
+                                                            <input type="hidden" name="id">
+                                                            <input type="text" name="nik1" id="nik1" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -273,7 +274,7 @@
                                                     <div class="col-md-8 col-md-offset-2">
                                                         <div class="form-group">
                                                             <label class="control-label">Fullname</label>
-                                                            <input type="text" name="fullname1" id="fullname" class="form-control">
+                                                            <input type="text" name="fullname1" id="fullname1" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -281,7 +282,7 @@
                                                     <div class="col-md-8 col-md-offset-2">
                                                         <div class="form-group">
                                                             <label class="control-label">Username</label>
-                                                            <input type="text" name="username1" id="username" class="form-control">
+                                                            <input type="text" name="username1" id="username1" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -289,7 +290,7 @@
                                                     <div class="col-md-8 col-md-offset-2">
                                                         <div class="form-group">
                                                             <label class="control-label">Password</label>
-                                                            <input type="password" name="password1" id="password" class="form-control">
+                                                            <input type="password" name="password1" id="password1" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -305,7 +306,7 @@
                                                     <div class="col-md-8 col-md-offset-2">
                                                         <div class="form-group">
                                                           <label class="control-label" for="jk">Level</label>
-                                                          <select class="form-control" name="level1">
+                                                          <select class="form-control" name="level1" id="level1">
                                                             <option selected>Teknisi</option>
                                                             <option>JM</option>
                                                             <option>SM</option>
@@ -406,19 +407,19 @@
     var save_method; //for save method string
     var table;
  
-    function edit(nik)
+    function edit(id)
     {
       save_method = 'update';
       $('#form')[0].reset(); // reset form on modals
  
       //Ajax Load data from ajax
       $.ajax({
-        url : "<?php echo site_url('user/edit/')?>/" + nik,
+        url : "<?php echo site_url('user/edit/')?>/" + id,
         type: "GET",
         dataType: "JSON",
         success: function(data)
         {
- 
+            $('[name="id"]').val(data.id);
             $('[name="nik1"]').val(data.nik);
             $('[name="fullname1"]').val(data.fullname);
             $('[name="username1"]').val(data.username);
@@ -440,12 +441,10 @@
 
     function save()
     {
-      var url;
-        url = "<?php echo site_url('user/update')?>";
  
        // ajax adding data to database
           $.ajax({
-            url : url,
+            url : "<?php echo site_url('user/update')?>",
             type: "POST",
             data: $('#form').serialize(),
             dataType: "JSON",

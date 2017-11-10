@@ -27,9 +27,8 @@ class Usermodel extends CI_Model {
 		return $query->row();
 	}
 
-	public function update_user($where, $data)
-	{
-		$this->db->update($this->table, $data, $where);
-		return $this->db->affected_rows();
-	}
+	public function update_user($where,$data,$table){
+		$this->db->where($where);
+		$this->db->update($table,$data);
+	}	
 }

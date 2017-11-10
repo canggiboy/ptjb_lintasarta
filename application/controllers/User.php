@@ -74,14 +74,26 @@ class User extends CI_Controller {
 
 	public function update()
 	{
+		$id = $this->input->post('id');
+		$nik = $this->input->post('nik1');
+		$fullname = $this->input->post('fullname1');
+		$username = $this->input->post('username1');
+		$password = $this->input->post('password1');
+		$repassword = $this->input->post('password1');
+		$level = $this->input->post('level1');
+
 		$data = array(
-				'nik' => $this->input->post('nik'),
-				'fullname' => $this->input->post('fullname'),
-				'username' => $this->input->post('username'),
-				'password' => $this->input->post('password'),
-				'level' => $this->input->post('level'),
+				'nik' => $nik,
+				'fullname' => $fullname,
+				'username' => $username,
+				'password' => $password,
+				'level' => $level
 			);
-		$this->usermodel->update_user(array('nik' => $this->input->post('nik')), $data);
+
+		$where = array(
+			'id' => $id
+		);
+		$this->usermodel->update_user($where,$data,'user_android');
 		echo json_encode(array("status" => TRUE));
 	}
 }
