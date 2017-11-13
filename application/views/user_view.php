@@ -127,7 +127,7 @@
                                     <p class="category">Tabel pada Daftar Pengguna</p>
                                 </div>
                                 <div class="card-content table-responsive">
-                                    <table class="table table-hover" id="table-id">
+                                    <table class="table table-hover table-striped" id="table-id" cellspacing="0" width="100%">
                                         <thead class="text-primary">
                                             <tr>
                                                 <th>NIK</th>
@@ -139,23 +139,7 @@
                                             </tr>                                           
                                         </thead>
                                         <tbody>
-                                            <?php $no=0; foreach ($data as $dt){ ?>
-                                                <tr>
-                                                    <td><?php echo $dt['nik'];?></td>
-                                                    <td><?php echo $dt['fullname'];?></td>
-                                                    <td><?php echo $dt['username'];?></td>
-                                                    <td><?php echo $dt['password'];?></td>
-                                                    <td><?php echo $dt['level'];?></td>
-                                                    <td>
-                                                        <a>
-                                                            <button onclick="edit(<?php echo $dt['nik'];?>)" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i> Update</button>
-                                                        </a>
-                                                        <a>
-                                                            <button onclick="delete_user(<?php echo $dt['nik'];?>)" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i>Delete</button>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <?php } ?>                      
+                                                               
                                         </tbody>
                                     </table>
                                 </div>
@@ -184,7 +168,7 @@
                                                 <div class="col-md-8 col-md-offset-2">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">NIK</label>
-                                                        <input type="text" name="nik" class="form-control">
+                                                        <input required type="text" name="nik" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -192,7 +176,7 @@
                                                 <div class="col-md-8 col-md-offset-2">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Fullname</label>
-                                                        <input type="text" name="fullname" class="form-control">
+                                                        <input required type="text" name="fullname" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -200,7 +184,7 @@
                                                 <div class="col-md-8 col-md-offset-2">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Username</label>
-                                                        <input type="text" name="username" class="form-control">
+                                                        <input required type="text" name="username" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -208,7 +192,7 @@
                                                 <div class="col-md-8 col-md-offset-2">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Password</label>
-                                                        <input type="password" name="password" class="form-control">
+                                                        <input required type="password" name="password" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -216,7 +200,7 @@
                                                 <div class="col-md-8 col-md-offset-2">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Retype Password</label>
-                                                        <input type="password" name="repassword" class="form-control">
+                                                        <input required type="password" name="repassword" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -266,7 +250,7 @@
                                                         <div class="form-group">
                                                             <label class="control-label">NIK</label>
                                                             <input type="hidden" name="id">
-                                                            <input type="text" name="nik1" id="nik1" class="form-control">
+                                                            <input required type="text" name="nik1" id="nik1" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -274,7 +258,7 @@
                                                     <div class="col-md-8 col-md-offset-2">
                                                         <div class="form-group">
                                                             <label class="control-label">Fullname</label>
-                                                            <input type="text" name="fullname1" id="fullname1" class="form-control">
+                                                            <input required type="text" name="fullname1" id="fullname1" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -282,7 +266,7 @@
                                                     <div class="col-md-8 col-md-offset-2">
                                                         <div class="form-group">
                                                             <label class="control-label">Username</label>
-                                                            <input type="text" name="username1" id="username1" class="form-control">
+                                                            <input required type="text" name="username1" id="username1" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -290,7 +274,7 @@
                                                     <div class="col-md-8 col-md-offset-2">
                                                         <div class="form-group">
                                                             <label class="control-label">Password</label>
-                                                            <input type="password" name="password1" id="password1" class="form-control">
+                                                            <input required type="password" name="password1" id="password1" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -298,7 +282,7 @@
                                                     <div class="col-md-8 col-md-offset-2">
                                                         <div class="form-group">
                                                             <label class="control-label">Retype Password</label>
-                                                            <input type="password" name="repassword1" id="repassword1" class="form-control">
+                                                            <input required type="password" name="repassword1" id="repassword1" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -342,12 +326,12 @@
                                             <p class="category">Perbaharui password</p>
                                         </div>
                                         <div class="card-content">
-                                            <form action="<?php echo base_url('user/update')?>" method="POST" accept-charset="utf-8">
+                                            <form method="POST" accept-charset="utf-8">
                                                 <div class="row">
                                                     <div class="col-md-8 col-md-offset-2">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Old Password</label>
-                                                            <input type="text" name="nik" class="form-control">
+                                                            <input type="password" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -355,7 +339,7 @@
                                                     <div class="col-md-8 col-md-offset-2">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">New Password</label>
-                                                            <input type="text" name="fullname" id="fullname" class="form-control">
+                                                            <input type="password" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -363,7 +347,7 @@
                                                     <div class="col-md-8 col-md-offset-2">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Retype New Password</label>
-                                                            <input type="text" name="username" id="username" class="form-control">
+                                                            <input type="password"6 class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -400,21 +384,59 @@
     </div>
         <p><a class="btn btn-primary btn-lg" href="<?php echo site_url('home/logout') ?>" role="button">Logout</a></p>
   </body>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
   <script type="text/javascript">
-  $(document).ready( function () {
-      $('#table-id').DataTable();
-  } );
     var save_method; //for save method string
     var table;
+   $(document).ready(function() {
+                //datatables
+                table = $('#table-id').DataTable({ 
+
+                    "processing": true, //Feature control the processing indicator.
+                    "serverSide": true, //Feature control DataTables' server-side processing mode.
+                    "order": [], //Initial no order.
+
+                    // Load data for the table's content from an Ajax source
+                    "ajax": {
+                        "url": "<?php echo site_url('user/ajax_list')?>",
+                        "type": "POST"
+                    },
+
+                    //Set column definition initialisation properties.
+                    "columnDefs": [
+                    { 
+                        "targets": [ -1 ], //last column
+                        "orderable": false, //set not orderable
+                    },
+                    ],
+                });
+                //set input/textarea/select event when change value, remove class error and remove text help block 
+                $("input").change(function(){
+                    $(this).parent().parent().removeClass('has-error');
+                    $(this).next().empty();
+                });
+                $("textarea").change(function(){
+                    $(this).parent().parent().removeClass('has-error');
+                    $(this).next().empty();
+                });
+                $("select").change(function(){
+                    $(this).parent().parent().removeClass('has-error');
+                    $(this).next().empty();
+                });
+            });
  
     function edit(id)
     {
       save_method = 'update';
       $('#form')[0].reset(); // reset form on modals
+      $('.form-group').removeClass('has-error'); // clear error class
+      $('.help-block').empty();
  
       //Ajax Load data from ajax
       $.ajax({
-        url : "<?php echo site_url('user/edit/')?>/" + id,
+        url : "<?php echo site_url('user/edit')?>/" + id,
         type: "GET",
         dataType: "JSON",
         success: function(data)
@@ -439,10 +461,16 @@
     });
     }
 
+    function reload_table()
+    {
+        table.ajax.reload(null,false); //reload datatable ajax 
+    }
+
     function save()
     {
- 
-       // ajax adding data to database
+        $('#form').submit(function(e) {
+        e.preventDefault();
+            // ajax adding data to database
           $.ajax({
             url : "<?php echo site_url('user/update')?>",
             type: "POST",
@@ -452,28 +480,29 @@
             {
                //if success close modal and reload ajax table
                $('#myModalUpdate').modal('hide');
-              location.reload();// for reload a page
+               reload_table();// for reload a page
             },
             error: function (jqXHR, textStatus, errorThrown)
             {
                 alert('Error adding / update data');
             }
         });
+      });
     }
 
-    function delete_user(nik)
+    function delete_user(id)
     {
       if(confirm('Are you sure delete this data?'))
       {
         // ajax delete data from database
           $.ajax({
-            url : "<?php echo site_url('user/delete')?>/"+nik,
+            url : "<?php echo site_url('user/delete')?>/"+id,
             type: "POST",
             dataType: "JSON",
             success: function(data)
             {
                
-               location.reload();
+               reload_table();
             },
             error: function (jqXHR, textStatus, errorThrown)
             {

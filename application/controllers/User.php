@@ -8,25 +8,17 @@ class User extends CI_Controller {
 
 		$this->load->helper('form');
 		$this->load->library('form_validation');
-		$this->load->model('usermodel');
+		$this->load->model('usermodel', 'user');
 	}
 
 	public function index()
 	{
 		if($this->session->userdata('logged_in')){
 			$session_data = $this->session->userdata('logged_in');
-			$data['data'] = $this->usermodel->show()->result_array();
+			$data['data'] = $this->user->show()->result_array();
 			$data['nik'] = $session_data['nik'];
 			$data['fullname'] = $session_data['fullname'];
 			$data['username'] = $session_data['username'];
-
-			/*$alldata = $this->usermodel->alldata();
-			if($alldata){
-				$table = $this->usermodel->create_table($alldata);
-				$data['table'] = $table;
-			}else{
-				echo "<p>Tidak ada data</p>";
-			}*/
 			$this->load->view('user_view', $data);
 		} else{
 			redirect('login', 'refresh');
@@ -43,7 +35,7 @@ class User extends CI_Controller {
 			$nik = $this->input->post('nik');
 			$fullname = $this->input->post('fullname');
 			$username = $this->input->post('username');
-			$password = $this->input->post('password');
+			$password = password_hash($this->input->post('password'), PASSWORD_BCRYPT);
 			$repassword = $this->input->post('password');
 			$level = $this->input->post('level');
 			$object = array(
@@ -60,15 +52,15 @@ class User extends CI_Controller {
 			}
 	}
 
-	public function delete($nik)
+	public function delete($id)
 	{
-		$this->usermodel->delete_by_nik($nik);
+		$this->user->delete_by_nik($id);
 		echo json_encode(array("status" => TRUE));
 	}
 
-	public function edit($nik)
+	public function edit($id)
 		{
-			$data = $this->usermodel->get_by_nik($nik);
+			$data = $this->user->get_by_nik($id);
 			echo json_encode($data);
 		}
 
@@ -93,7 +85,38 @@ class User extends CI_Controller {
 		$where = array(
 			'id' => $id
 		);
-		$this->usermodel->update_user($where,$data,'user_android');
+		$this->user->update_user($where,$data,'user_android');
 		echo json_encode(array("status" => TRUE));
+	}
+
+    public function ajax_list()
+	{
+		$list = $this->user->get_datatables();
+		$data = array();
+		$no = $_POST['start'];
+		foreach ($list as $li) {
+			$no++;
+			$row = array();
+			$row[] = $li->nik;
+			$row[] = $li->fullname;
+			$row[] = $li->username;
+			$row[] = $li->password;
+			$row[] = $li->level;
+
+			//add html for action
+			$row[] = '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit('."'".$li->id."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+				  <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_user('."'".$li->id."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+		
+			$data[] = $row;
+		}
+
+		$output = array(
+						"draw" => $_POST['draw'],
+						"recordsTotal" => $this->user->count_all(),
+						"recordsFiltered" => $this->user->count_filtered(),
+						"data" => $data,
+				);
+		//output to json format
+		echo json_encode($output);
 	}
 }
