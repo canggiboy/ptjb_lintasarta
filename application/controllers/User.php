@@ -70,7 +70,7 @@ class User extends CI_Controller {
 		$nik = $this->input->post('nik1');
 		$fullname = $this->input->post('fullname1');
 		$username = $this->input->post('username1');
-		$password = $this->input->post('password1');
+		$password = password_hash($this->input->post('password1'), PASSWORD_BCRYPT);
 		$repassword = $this->input->post('password1');
 		$level = $this->input->post('level1');
 

@@ -104,73 +104,63 @@
                                 </ul>
                             </li>
                         </ul>
-                        <form class="navbar-form navbar-right" role="search">
-                            <div class="form-group  is-empty">
-                                <input type="text" class="form-control" placeholder="Search">
-                                <span class="material-input"></span>
-                            </div>
-                            <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                                <i class="material-icons">search</i>
-                                <div class="ripple-container"></div>
-                            </button>
-                        </form>
                     </div>
                 </div>
             </nav>
             <div class="content">
-                <div class="modal fade" id="myModalPassword" role="dialog">
-                    <div class="modal-dialog">
-                        <div class="row">
-                            <div class="col-md-7 col-md-offset-4">
-                                <div class="card">
-                                    <div class="card-header" data-background-color="blue">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="title">Change Password</h4>
-                                        <p class="category">Perbaharui password</p>
-                                    </div>
-                                    <div class="card-content">
-                                        <form action="<?php echo base_url('user/update')?>" method="POST" accept-charset="utf-8">
-                                            <div class="row">
-                                                <div class="col-md-8 col-md-offset-2">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Old Password</label>
-                                                        <input type="text" name="nik" class="form-control">
+                    <div class="modal fade" id="myModalPassword" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="row">
+                                <div class="col-md-7 col-md-offset-4">
+                                    <div class="card">
+                                        <div class="card-header" data-background-color="blue">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="title">Change Password</h4>
+                                            <p class="category">Perbaharui password</p>
+                                        </div>
+                                        <div class="card-content">
+                                            <form method="POST" accept-charset="utf-8">
+                                                <div class="row">
+                                                    <div class="col-md-8 col-md-offset-2">
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Old Password</label>
+                                                            <input type="password" class="form-control">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-8 col-md-offset-2">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">New Password</label>
-                                                        <input type="text" name="fullname" id="fullname" class="form-control">
+                                                <div class="row">
+                                                    <div class="col-md-8 col-md-offset-2">
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">New Password</label>
+                                                            <input type="password" class="form-control">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-8 col-md-offset-2">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Retype New Password</label>
-                                                        <input type="text" name="username" id="username" class="form-control">
+                                                <div class="row">
+                                                    <div class="col-md-8 col-md-offset-2">
+                                                        <div class="form-group label-floating">
+                                                            <label class="control-label">Retype New Password</label>
+                                                            <input type="password"6 class="form-control">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-8 col-md-offset-2">
-                                                    <a href="<?php echo site_url('user')?>">
-                                                    <button type="submit" name="submit" class="btn btn-primary pull-left" data-background-color="blue">
-                                                        <i class="material-icons">autorenew</i> Change Password
-                                                    </button>
-                                                 </a>
+                                                <div class="row">
+                                                    <div class="col-md-5 col-md-offset-2">
+                                                        <a>
+                                                        <button type="submit" name="submit" class="btn btn-primary pull-left" data-background-color="blue">
+                                                            <i class="material-icons">autorenew</i> Change Password
+                                                        </button>
+                                                     </a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </form>
-                                    </div>
+                                                <div class="clearfix"></div>
+                                            </form>
+                                        </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                </div>
+                    </div>
             </div>
             <footer class="footer">
                 <div class="container-fluid">
