@@ -1,23 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Administrator Area</title>
-
-    <!-- Bootstrap -->
-    <link href="<?php echo base_url('assets/dist/css/bootstrap.min.css') ?>" rel="stylesheet">
-
-    <link href="<?php echo base_url() ?>assets/dist/css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="<?php echo base_url() ?>assets/dist/css/demo.css" rel="stylesheet" />
-    <!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
-
-  </head>
   <body>
     <div class="wrapper">
         <div class="sidebar" data-color="blue" data-image="<?php echo base_url() ?>assets/img/sidebar-5.jpg">
@@ -39,6 +19,18 @@
                         </a>
                     </li>
                     <li>
+                        <a href="<?php echo site_url('home/pum')?>">
+                            <i class="material-icons">monetization_on</i>
+                            <p>PUM List</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo site_url('home/activity')?>">
+                            <i class="material-icons">directions_run</i>
+                            <p>Activity List</p>
+                        </a>
+                    </li>
+                    <li>
                         <a href="<?php echo site_url('home/logout')?>">
                             <i class="material-icons">exit_to_app</i>
                             <p>Exit</p>
@@ -57,7 +49,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">Administrator Dashboard </a>
+                        <a class="navbar-brand" href="#">Dashboard </a>
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
@@ -177,29 +169,3 @@
     </div>
         <p><a class="btn btn-primary btn-lg" href="<?php echo site_url('home/logout') ?>" role="button">Logout</a></p>
   </body>
-  <script src="<?php echo base_url() ?>assets/dist/js/jquery.min.js" type="text/javascript"></script>
-  <script src="<?php echo base_url() ?>assets/dist/js/bootstrap.min.js" type="text/javascript"></script>
-  <script src="<?php echo base_url() ?>assets/dist/js/material.min.js" type="text/javascript"></script>
-  <!--  Charts Plugin -->
-  <script src="<?php echo base_url() ?>assets/dist/js/chartist.min.js"></script>
-  <!--  Dynamic Elements plugin -->
-  <script src="<?php echo base_url() ?>assets/dist/js/arrive.min.js"></script>
-  <!--  PerfectScrollbar Library -->
-  <script src="<?php echo base_url() ?>assets/dist/js/perfect-scrollbar.jquery.min.js"></script>
-  <!--  Notifications Plugin    -->
-  <script src="<?php echo base_url() ?>assets/dist/js/bootstrap-notify.js"></script>
-  <!--  Google Maps Plugin    -->
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-  <!-- Material Dashboard javascript methods -->
-  <script src="<?php echo base_url() ?>assets/dist/js/material-dashboard.js?v=1.2.0"></script>
-  <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-  <script src="<?php echo base_url() ?>assets/dist/js/demo.js"></script>
-  <script type="text/javascript">
-      $(document).ready(function() {
-
-          // Javascript method's body can be found in assets/js/demos.js
-          demo.initDashboardPageCharts();
-
-      });
-  </script>
-</html>

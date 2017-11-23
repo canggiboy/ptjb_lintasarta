@@ -12,13 +12,13 @@
                             <p>Dashboard</p>
                         </a>
                     </li>
-                    <li class="active">
+                    <li>
                         <a href="../index.php/user">
                             <i class="material-icons">person</i>
                             <p>User List</p>
                         </a>
                     </li>
-                    <li>
+                    <li class="active">
                         <a href="<?php echo site_url('home/pum')?>">
                             <i class="material-icons">monetization_on</i>
                             <p>PUM List</p>
@@ -49,7 +49,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">User List</a>
+                        <a class="navbar-brand" href="#">PUM List</a>
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
@@ -105,8 +105,8 @@
                         <div class="col-md-12">
                             <div class="card card-plain">
                                 <div class="card-header" data-background-color="blue">
-                                    <h4 class="title">Table on User list</h4>
-                                    <p class="category">Tabel pada Daftar Pengguna</p>
+                                    <h4 class="title">Table on PUM list</h4>
+                                    <p class="category">Tabel pada Daftar PUM</p>
                                 </div>
                                 <div class="card-content table-responsive">
                                     <table class="table table-hover table-striped" id="table-id" cellspacing="0" width="100%">
@@ -114,9 +114,9 @@
                                             <tr>
                                                 <th>NIK</th>
                                                 <th>Fullname</th>
-                                                <th>Username</th>
-                                                <th>Password</th>
-                                                <th>Level</th>
+                                                <th>Number of PUM</th>
+                                                <th>Activity Name</th>
+                                                <th>Location</th>
                                                 <th>Action</th>
                                             </tr>                                           
                                         </thead>
@@ -126,83 +126,72 @@
                                     </table>
                                 </div>
                                 <a>
-                                    <button type="submit" class="btn btn-primary pull-left" data-background-color="blue" data-toggle="modal" data-target="#myModalAdd">
-                                        <i class="material-icons">person_add</i> Add User
+                                    <button type="submit" class="btn btn-primary pull-left" data-background-color="blue" data-toggle="modal" data-target="#myModalPum">
+                                        <i class="material-icons">person_add</i> Add PUM
                                     </button>
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal fade" id="myModalAdd" role="dialog">
+                <div class="modal fade" id="myModalPum" role="dialog">
                     <div class="modal-dialog">
                         <div class="row">
                             <div class="col-md-8 col-md-offset-3">
                                 <div class="card">
                                     <div class="card-header" data-background-color="blue">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="title">Add New User</h4>
-                                        <p class="category">Tambahkan pengguna baru</p>
+                                        <h4 class="title">Add New PUM</h4>
+                                        <p class="category">Tambahkan PUM baru</p>
                                     </div>
                                     <div class="card-content">
-                                        <form action="<?php echo site_url('user/add')?>" method="POST" accept-charset="utf-8">
+                                        <form action="<?php echo site_url('pum/add')?>" method="POST" accept-charset="utf-8">
                                             <div class="row">
                                                 <div class="col-md-8 col-md-offset-2">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">NIK</label>
-                                                        <input required type="text" name="nik" class="form-control">
+                                                        <input required type="search" name="nik" class="autocomplete form-control">
+                                                        <input type="hidden" name="id_user" class="autocomplete form-control" id="id_user">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-8 col-md-offset-2">
-                                                    <div class="form-group label-floating">
+                                                    <div class="form-group">
                                                         <label class="control-label">Fullname</label>
-                                                        <input required type="text" name="fullname" class="form-control">
+                                                        <input required type="text" name="fullname" class="autocomplete form-control" id="fullname">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-8 col-md-offset-2">
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">Username</label>
-                                                        <input required type="text" name="username" class="form-control">
+                                                        <label class="control-label">Number of PUM</label>
+                                                        <input required type="number" name="number_of_pum" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-8 col-md-offset-2">
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">Password</label>
-                                                        <input required type="password" name="password" class="form-control">
+                                                        <label class="control-label">Activity Name</label>
+                                                        <input required type="text" name="activity_name" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-8 col-md-offset-2">
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">Retype Password</label>
-                                                        <input required type="password" name="repassword" class="form-control">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-8 col-md-offset-2">
-                                                    <div class="form-group label-floating">
-                                                      <label class="control-label" for="jk">Level</label>
-                                                      <select class="form-control" name="level">
-                                                        <option selected>Teknisi</option>
-                                                        <option>JM</option>
-                                                        <option>SM</option>
-                                                      </select>
+                                                        <label class="control-label">Location</label>
+                                                        <input required type="text" name="location" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-8 col-md-offset-3">
-                                                    <a href="<?php echo site_url('user')?>">
+                                                    <a href="<?php echo site_url('pum')?>">
                                                     <button type="submit" name="submit" class="btn btn-primary pull-left" data-background-color="blue">
-                                                        <i class="material-icons">person_add</i> Add New User
+                                                        <i class="material-icons">person_add</i> Add New PUM
                                                     </button>
                                                  </a>
                                                 </div>
@@ -215,142 +204,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="modal fade" id="myModalUpdate" role="dialog">
-                        <div class="modal-dialog">
-                            <div class="row">
-                                <div class="col-md-8 col-md-offset-3">
-                                    <div class="card">
-                                        <div class="card-header" data-background-color="blue">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="title">Update User</h4>
-                                            <p class="category">Perbaharui pengguna</p>
-                                        </div>
-                                        <div class="card-content">
-                                            <form id="form" method="POST" accept-charset="utf-8">
-                                                <div class="row">
-                                                    <div class="col-md-8 col-md-offset-2">
-                                                        <div class="form-group">
-                                                            <label class="control-label">NIK</label>
-                                                            <input type="hidden" name="id">
-                                                            <input required type="text" name="nik1" id="nik1" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-8 col-md-offset-2">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Fullname</label>
-                                                            <input required type="text" name="fullname1" id="fullname1" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-8 col-md-offset-2">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Username</label>
-                                                            <input required type="text" name="username1" id="username1" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-8 col-md-offset-2">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Password</label>
-                                                            <input required type="password" name="password1" id="password1" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-8 col-md-offset-2">
-                                                        <div class="form-group">
-                                                            <label class="control-label">Retype Password</label>
-                                                            <input required type="password" name="repassword1" id="repassword1" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-8 col-md-offset-2">
-                                                        <div class="form-group">
-                                                          <label class="control-label" for="jk">Level</label>
-                                                          <select class="form-control" name="level1" id="level1">
-                                                            <option selected>Teknisi</option>
-                                                            <option>JM</option>
-                                                            <option>SM</option>
-                                                          </select>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-8 col-md-offset-3">
-                                                        <a>
-                                                        <button onclick="save()" type="submit" name="submit" class="btn btn-primary pull-left" data-background-color="blue">
-                                                            <i class="material-icons">update</i> Update User
-                                                        </button>
-                                                     </a>
-                                                    </div>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </form>
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                    <div class="modal fade" id="myModalPassword" role="dialog">
-                        <div class="modal-dialog">
-                            <div class="row">
-                                <div class="col-md-7 col-md-offset-4">
-                                    <div class="card">
-                                        <div class="card-header" data-background-color="blue">
-                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                            <h4 class="title">Change Password</h4>
-                                            <p class="category">Perbaharui password</p>
-                                        </div>
-                                        <div class="card-content">
-                                            <form method="POST" accept-charset="utf-8">
-                                                <div class="row">
-                                                    <div class="col-md-8 col-md-offset-2">
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">Old Password</label>
-                                                            <input type="password" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-8 col-md-offset-2">
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">New Password</label>
-                                                            <input type="password" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-8 col-md-offset-2">
-                                                        <div class="form-group label-floating">
-                                                            <label class="control-label">Retype New Password</label>
-                                                            <input type="password"6 class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-5 col-md-offset-2">
-                                                        <a>
-                                                        <button type="submit" name="submit" class="btn btn-primary pull-left" data-background-color="blue">
-                                                            <i class="material-icons">autorenew</i> Change Password
-                                                        </button>
-                                                     </a>
-                                                    </div>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                            </form>
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                </div>
+            </div>
             <footer class="footer">
                 <div class="container-fluid">
                     <p class="copyright pull-right">
@@ -369,6 +223,7 @@
   <script type="text/javascript">
     var save_method; //for save method string
     var table;
+    document.getElementById('fullname').disabled = true;
    $(document).ready(function() {
                 //datatables
                 table = $('#table-id').DataTable({ 
@@ -379,7 +234,7 @@
 
                     // Load data for the table's content from an Ajax source
                     "ajax": {
-                        "url": "<?php echo site_url('user/ajax_list')?>",
+                        "url": "<?php echo site_url('pum/ajax_list')?>",
                         "type": "POST"
                     },
 
@@ -391,6 +246,27 @@
                     },
                     ],
                 });
+
+                $('.autocomplete').autocomplete({
+                // serviceUrl berisi URL ke controller/fungsi yang menangani request kita
+                serviceUrl: "<?php echo site_url('pum/search')?>",
+                // fungsi ini akan dijalankan ketika user memilih salah satu hasil request
+                onSelect: function (suggestion) {
+                    $('#id_user').val(''+suggestion.id);
+                    $('#fullname').val(''+suggestion.fullname); // membuat id 'v_nim' untuk ditampilkan
+                }
+                });
+
+                //datepicker
+                $('.datepicker').datepicker({
+                    autoclose: true,
+                    format: "yyyy-mm-dd",
+                    todayHighlight: true,
+                    orientation: "top auto",
+                    todayBtn: true,
+                    todayHighlight: true,  
+                });
+
                 //set input/textarea/select event when change value, remove class error and remove text help block 
                 $("input").change(function(){
                     $(this).parent().parent().removeClass('has-error');
@@ -415,7 +291,7 @@
  
       //Ajax Load data from ajax
       $.ajax({
-        url : "<?php echo site_url('user/edit')?>/" + id,
+        url : "<?php echo site_url('pum/edit')?>/" + id,
         type: "GET",
         dataType: "JSON",
         success: function(data)
@@ -451,7 +327,7 @@
         e.preventDefault();
             // ajax adding data to database
           $.ajax({
-            url : "<?php echo site_url('user/update')?>",
+            url : "<?php echo site_url('pum/update')?>",
             type: "POST",
             data: $('#form').serialize(),
             dataType: "JSON",
@@ -475,7 +351,7 @@
       {
         // ajax delete data from database
           $.ajax({
-            url : "<?php echo site_url('user/delete')?>/"+id,
+            url : "<?php echo site_url('pum/delete')?>/"+id,
             type: "POST",
             dataType: "JSON",
             success: function(data)

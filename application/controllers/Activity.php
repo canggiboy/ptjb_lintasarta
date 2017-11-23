@@ -1,27 +1,27 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends CI_Controller {
+class Activity extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
 
 		$this->load->helper('form');
 		$this->load->library('form_validation');
-		$this->load->model('usermodel', 'user');
+		$this->load->model('activitymodel', 'activity');
 	}
 
 	public function index()
 	{
 		if($this->session->userdata('logged_in')){
 			$session_data = $this->session->userdata('logged_in');
-			$data['data'] = $this->user->show()->result_array();
+			$data['data'] = $this->activity->show()->result_array();
 			$data['nik'] = $session_data['nik'];
 			$data['fullname'] = $session_data['fullname'];
 			$data['username'] = $session_data['username'];
 			$this->load->view('header_view', $data);
 			$this->load->view('footer_view', $data);
-			$this->load->view('user_view', $data);
+			$this->load->view('activity_view', $data);
 		} else{
 			redirect('login', 'refresh');
 		}
@@ -93,7 +93,7 @@ class User extends CI_Controller {
 
     public function ajax_list()
 	{
-		$list = $this->user->get_datatables();
+		$list = $this->pum->get_datatables();
 		$data = array();
 		$no = $_POST['start'];
 		foreach ($list as $li) {
@@ -121,4 +121,6 @@ class User extends CI_Controller {
 		//output to json format
 		echo json_encode($output);
 	}
+
+
 }

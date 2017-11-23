@@ -26,7 +26,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
   echo json_encode($response);
    }else{
     $response["error"] = TRUE;
-     $response["message"] = "Incorrect Email or Password!";
+     $response["message"] = "Incorrect Username or Password!";
 
   echo json_encode($response);
    }

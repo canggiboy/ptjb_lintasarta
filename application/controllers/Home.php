@@ -10,7 +10,10 @@ class Home extends CI_Controller {
 			$data['nik'] = $session_data['nik'];
 			$data['fullname'] = $session_data['fullname'];
 			$data['username'] = $session_data['username'];
+			$this->load->view('header_view', $data);
+			$this->load->view('footer_view', $data);
 			$this->load->view('home_view', $data);
+
 		} else{
 			redirect('login', 'refresh');
 		}
@@ -28,5 +31,14 @@ class Home extends CI_Controller {
 		redirect(site_url('user'), 'refresh');
 	}
 
+	public function pum()
+	{
+		redirect(site_url('pum'), 'refresh');
+	}
+
+	public function activity()
+	{
+		redirect(site_url('activity'), 'refresh');
+	}
 
 }
