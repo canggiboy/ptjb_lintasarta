@@ -13,13 +13,13 @@
                         </a>
                     </li>
                     <li>
-                        <a href="../index.php/user">
+                        <a href="<?php echo site_url('user')?>">
                             <i class="material-icons">person</i>
                             <p>User List</p>
                         </a>
                     </li>
                     <li class="active">
-                        <a href="<?php echo site_url('home/pum')?>">
+                        <a href="../index.php/pum">
                             <i class="material-icons">monetization_on</i>
                             <p>PUM List</p>
                         </a>
@@ -116,6 +116,7 @@
                                                 <th>Fullname</th>
                                                 <th>Number of PUM</th>
                                                 <th>Activity Name</th>
+                                                <th>Date of Activity</th>
                                                 <th>Location</th>
                                                 <th>Action</th>
                                             </tr>                                           
@@ -141,7 +142,7 @@
                                 <div class="card">
                                     <div class="card-header" data-background-color="blue">
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="title">Add New PUM</h4>
+                                        <h4 class="modal_title">Add New PUM</h4>
                                         <p class="category">Tambahkan PUM baru</p>
                                     </div>
                                     <div class="card-content">
@@ -182,6 +183,14 @@
                                             <div class="row">
                                                 <div class="col-md-8 col-md-offset-2">
                                                     <div class="form-group label-floating">
+                                                        <label class="control-label">Date of Activity</label>
+                                                        <input required type="text" name="date_of_activity" class="datepicker form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-8 col-md-offset-2">
+                                                    <div class="form-group label-floating">
                                                         <label class="control-label">Location</label>
                                                         <input required type="text" name="location" class="form-control">
                                                     </div>
@@ -192,6 +201,86 @@
                                                     <a href="<?php echo site_url('pum')?>">
                                                     <button type="submit" name="submit" class="btn btn-primary pull-left" data-background-color="blue">
                                                         <i class="material-icons">person_add</i> Add New PUM
+                                                    </button>
+                                                 </a>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </form>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="myModalPumEdit" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-3">
+                                <div class="card">
+                                    <div class="card-header" data-background-color="blue">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal_title">Update PUM</h4>
+                                        <p class="category">Memperbaharui PUM</p>
+                                    </div>
+                                    <div class="card-content">
+                                        <form id="form" method="POST" accept-charset="utf-8">
+                                            <div class="row">
+                                                <div class="col-md-8 col-md-offset-2">
+                                                    <div class="form-group">
+                                                        <label class="control-label">NIK</label>
+                                                        <input required type="search" name="nik1" id="nik1" class="autocomplete form-control">
+                                                        <input type="hidden" name="id_user1" class="form-control" id="id_user1">
+                                                        <input type="hidden" name="id_pum" class="form-control" id="id_pum">
+                                                        <input type="hidden" name="id_kegiatan" class="form-control" id="id_kegiatan">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-8 col-md-offset-2">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Fullname</label>
+                                                        <input required type="text" name="fullname1" class="autocomplete form-control" id="fullname1">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-8 col-md-offset-2">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Number of PUM</label>
+                                                        <input required type="number" name="number_of_pum1" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-8 col-md-offset-2">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Activity Name</label>
+                                                        <input required type="text" name="activity_name1" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-8 col-md-offset-2">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Date of Activity</label>
+                                                        <input required type="text" name="date_of_activity1" class="datepicker form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-8 col-md-offset-2">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Location</label>
+                                                        <input required type="text" name="location1" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-8 col-md-offset-3">
+                                                    <a>
+                                                    <button onclick="save()" type="submit" name="submit" class="btn btn-primary pull-left" data-background-color="blue">
+                                                        <i class="material-icons">person_add</i> Update PUM
                                                     </button>
                                                  </a>
                                                 </div>
@@ -224,6 +313,8 @@
     var save_method; //for save method string
     var table;
     document.getElementById('fullname').disabled = true;
+    //document.getElementById('nik1').disabled = true;
+    //document.getElementById('fullname1').disabled = true;
    $(document).ready(function() {
                 //datatables
                 table = $('#table-id').DataTable({ 
@@ -254,6 +345,8 @@
                 onSelect: function (suggestion) {
                     $('#id_user').val(''+suggestion.id);
                     $('#fullname').val(''+suggestion.fullname); // membuat id 'v_nim' untuk ditampilkan
+                    $('#id_user1').val(''+suggestion.id);
+                    $('#fullname1').val(''+suggestion.fullname);
                 }
                 });
 
@@ -296,17 +389,15 @@
         dataType: "JSON",
         success: function(data)
         {
-            $('[name="id"]').val(data.id);
+            $('[name="id_user1"]').val(data.id);
+            $('[name="id_pum"]').val(data.id_pum);
+            $('[name="id_kegiatan"]').val(data.id_kegiatan);
             $('[name="nik1"]').val(data.nik);
             $('[name="fullname1"]').val(data.fullname);
-            $('[name="username1"]').val(data.username);
-            $('[name="password1"]').val(data.password);
-            $('[name="repassword1"]').val(data.password);
-            $('[name="level1"]').val(data.level);
- 
- 
-            $('#myModalUpdate').modal('show'); // show bootstrap modal when complete loaded
-            $('.modal-title').text('Edit Book'); // Set title to Bootstrap modal title
+            $('[name="number_of_pum1"]').val(data.jumlah_pum);
+            $('[name="activity_name1"]').val(data.nama_kegiatan);
+            $('[name="date_of_activity1"]').val(data.tgl_mulai);
+            $('[name="location1"]').val(data.lokasi);
  
         },
         error: function (jqXHR, textStatus, errorThrown)
@@ -334,7 +425,7 @@
             success: function(data)
             {
                //if success close modal and reload ajax table
-               $('#myModalUpdate').modal('hide');
+               $('#myModalPumEdit').modal('hide');
                reload_table();// for reload a page
             },
             error: function (jqXHR, textStatus, errorThrown)
@@ -345,13 +436,13 @@
       });
     }
 
-    function delete_user(id)
+    function delete_user(id,id_pum)
     {
       if(confirm('Are you sure delete this data?'))
       {
         // ajax delete data from database
           $.ajax({
-            url : "<?php echo site_url('pum/delete')?>/"+id,
+            url : "<?php echo site_url('pum/delete')?>/"+id+('/')+id_pum,
             type: "POST",
             dataType: "JSON",
             success: function(data)

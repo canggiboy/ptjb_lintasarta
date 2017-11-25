@@ -61,61 +61,74 @@ class Pum extends CI_Controller {
 			$fullname = $this->input->post('fullname');
 			$number_of_pum = $this->input->post('number_of_pum');
 			$activity_name = $this->input->post('activity_name');
+			$date_of_activity = $this->input->post('date_of_activity');
 			$location = $this->input->post('location');
-			$object1 = array(
+			$object = array(
 				'id' => $id,
 				'jumlah_pum' => $number_of_pum,
 			);
-			$object2 = array(
+			$this->db->insert('pum_detail',$object);
+
+			$object = array(
 				'nama_kegiatan' => $activity_name,
 				'lokasi' => $location,
-				'id' => $id,
-				'id_pum' => $id,
+				'tgl_mulai' => $date_of_activity,
+				'id_pum' => $this->db->insert_id(),
 			);
-			$this->db->insert('pum_detail',$object1);
-			$this->db->insert('kegiatan',$object2);
+			$this->db->insert('kegiatan',$object);
 			redirect('pum');
 			} else{
 				redirect('login', 'refresh');
 			}
 	}
 
-	public function delete($id)
+	public function update()
 	{
-		$this->user->delete_by_nik($id);
+		$id = $this->input->post('id_user1');
+		$id_pum = $this->input->post('id_pum');
+		$id_kegiatan = $this->input->post('id_kegiatan');
+		$nik = $this->input->post('nik1');
+		$fullname = $this->input->post('fullname1');
+		$number_of_pum = $this->input->post('number_of_pum1');
+		$activity_name = $this->input->post('activity_name1');
+		$date_of_activity = $this->input->post('date_of_activity1');
+		$location = $this->input->post('location1');
+
+		$data1 = array(
+				'pum_detail.id' => $id,
+				'pum_detail.jumlah_pum' => $number_of_pum
+			);
+
+		$data2 = array(
+				'kegiatan.id_pum' => $id_pum,
+				'kegiatan.nama_kegiatan' => $activity_name,
+				'kegiatan.tgl_mulai' => $date_of_activity,
+				'kegiatan.lokasi' => $location
+			);
+
+		$where1 = array(
+			'pum_detail.id_pum' => $id_pum
+		);
+
+		$where2 = array(
+			'kegiatan.id_kegiatan' => $id_kegiatan
+		);
+
+		$this->pum->update_pum($where1,$where2,$data1,$data2);
+		echo json_encode(array("status" => TRUE));
+	}
+
+	public function delete($id,$id_pum)
+	{
+		$this->pum->delete_by_id($id,$id_pum);
 		echo json_encode(array("status" => TRUE));
 	}
 
 	public function edit($id)
 		{
-			$data = $this->user->get_by_nik($id);
+			$data = $this->pum->get_by_id($id);
 			echo json_encode($data);
 		}
-
-	public function update()
-	{
-		$id = $this->input->post('id');
-		$nik = $this->input->post('nik1');
-		$fullname = $this->input->post('fullname1');
-		$username = $this->input->post('username1');
-		$password = password_hash($this->input->post('password1'), PASSWORD_BCRYPT);
-		$repassword = $this->input->post('password1');
-		$level = $this->input->post('level1');
-
-		$data = array(
-				'nik' => $nik,
-				'fullname' => $fullname,
-				'username' => $username,
-				'password' => $password,
-				'level' => $level
-			);
-
-		$where = array(
-			'id' => $id
-		);
-		$this->user->update_user($where,$data,'user_android');
-		echo json_encode(array("status" => TRUE));
-	}
 
     public function ajax_list()
 	{
@@ -127,21 +140,23 @@ class Pum extends CI_Controller {
 			$row = array();
 			$row[] = $li->nik;
 			$row[] = $li->fullname;
-			$row[] = $li->username;
-			$row[] = $li->password;
-			$row[] = $li->level;
+			$row[] = $li->jumlah_pum;
+			$row[] = $li->nama_kegiatan;
+			$row[] = $li->tgl_mulai;
+			$row[] = $li->lokasi;
 
 			//add html for action
-			$row[] = '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit('."'".$li->id."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
-				  <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_user('."'".$li->id."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+			$row[] = '<a class="btn btn-sm btn-info" href="javascript:void(0)" title="Hapus" onclick="detail('."'".$li->id."'".')"><i class="glyphicon glyphicon-info-sign"></i> Detail</a>
+			<a class="btn btn-sm btn-primary" href="javascript:void(0)" data-toggle="modal" data-target="#myModalPumEdit" title="Edit" onclick="edit('."'".$li->id."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+				  <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_user('."'".$li->id."'".','."'".$li->id_pum."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
 		
 			$data[] = $row;
 		}
 
 		$output = array(
 						"draw" => $_POST['draw'],
-						"recordsTotal" => $this->user->count_all(),
-						"recordsFiltered" => $this->user->count_filtered(),
+						"recordsTotal" => $this->pum->count_all(),
+						"recordsFiltered" => $this->pum->count_filtered(),
 						"data" => $data,
 				);
 		//output to json format
