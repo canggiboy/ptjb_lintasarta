@@ -135,6 +135,59 @@
                         </div>
                     </div>
                 </div>
+                <div class="modal fade" id="myModalPassword" role="dialog">
+                    <div class="modal-dialog">
+                        <div class="row">
+                            <div class="col-md-7 col-md-offset-4">
+                                <div class="card">
+                                    <div class="card-header" data-background-color="blue">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="title">Change Password</h4>
+                                        <p class="category">Perbaharui password</p>
+                                    </div>
+                                    <div class="card-content">
+                                        <form method="POST" accept-charset="utf-8">
+                                            <div class="row">
+                                                <div class="col-md-8 col-md-offset-2">
+                                                    <div class="form-group label-floating">
+                                                        <label class="control-label">Old Password</label>
+                                                        <input type="password" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-8 col-md-offset-2">
+                                                    <div class="form-group label-floating">
+                                                        <label class="control-label">New Password</label>
+                                                        <input type="password" class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-8 col-md-offset-2">
+                                                    <div class="form-group label-floating">
+                                                        <label class="control-label">Retype New Password</label>
+                                                        <input type="password"6 class="form-control">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-5 col-md-offset-2">
+                                                    <a>
+                                                    <button type="submit" name="submit" class="btn btn-primary pull-left" data-background-color="blue">
+                                                        <i class="material-icons">autorenew</i> Change Password
+                                                    </button>
+                                                 </a>
+                                                </div>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="modal fade" id="myModalPum" role="dialog">
                     <div class="modal-dialog">
                         <div class="row">

@@ -145,7 +145,7 @@
                                         <p class="category">Tambahkan pengguna baru</p>
                                     </div>
                                     <div class="card-content">
-                                        <form action="<?php echo site_url('user/add')?>" method="POST" accept-charset="utf-8">
+                                        <form action="<?php echo site_url('user/add')?>" method="POST" accept-charset="utf-8" id="form_add">
                                             <div class="row">
                                                 <div class="col-md-8 col-md-offset-2">
                                                     <div class="form-group label-floating">
@@ -308,12 +308,12 @@
                                             <p class="category">Perbaharui password</p>
                                         </div>
                                         <div class="card-content">
-                                            <form method="POST" accept-charset="utf-8">
+                                            <form id="change_password" method="POST" accept-charset="utf-8">
                                                 <div class="row">
                                                     <div class="col-md-8 col-md-offset-2">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Old Password</label>
-                                                            <input type="password" class="form-control">
+                                                            <input required type="password" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -321,7 +321,7 @@
                                                     <div class="col-md-8 col-md-offset-2">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">New Password</label>
-                                                            <input type="password" class="form-control">
+                                                            <input required type="password" id="new_password" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -329,7 +329,7 @@
                                                     <div class="col-md-8 col-md-offset-2">
                                                         <div class="form-group label-floating">
                                                             <label class="control-label">Retype New Password</label>
-                                                            <input type="password"6 class="form-control">
+                                                            <input required type="password" id="retype_npass" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -404,6 +404,29 @@
                     $(this).parent().parent().removeClass('has-error');
                     $(this).next().empty();
                 });
+                $("#form_add").validate({
+                           rules: {
+                               password: { 
+                                 required: true,
+                                    minlength: 6,
+                                    maxlength: 10,
+
+                               } , 
+
+                                   repassword: { 
+                                    equalTo: "#password",
+                                     minlength: 6,
+                                     maxlength: 10
+                               }
+                           },
+                     messages:{
+                         password: { 
+                                 required:"The password is required"
+
+                               }
+                     }
+
+                });
             });
  
     function edit(id)
@@ -447,25 +470,45 @@
 
     function save()
     {
-        $('#form').submit(function(e) {
-        e.preventDefault();
-            // ajax adding data to database
-          $.ajax({
-            url : "<?php echo site_url('user/update')?>",
-            type: "POST",
-            data: $('#form').serialize(),
-            dataType: "JSON",
-            success: function(data)
-            {
-               //if success close modal and reload ajax table
-               $('#myModalUpdate').modal('hide');
-               reload_table();// for reload a page
+        $('#form').validate({
+            rules: {
+               password1: { 
+                 required: true,
+                    minlength: 6,
+                    maxlength: 10,
+
+               } , 
+
+                   repassword1: { 
+                    equalTo: "#password1",
+                     minlength: 6,
+                     maxlength: 10
+               }
+           },
+             messages:{
+                 password1: { 
+                         required:"The password is required"
+
+                }
             },
-            error: function (jqXHR, textStatus, errorThrown)
-            {
-                alert('Error adding / update data');
+            submitHandler: function(){
+                    $.ajax({
+                    url : "<?php echo site_url('user/update')?>",
+                    type: "POST",
+                    data: $('#form').serialize(),
+                    dataType: "JSON",
+                    success: function(data)
+                    {
+                       //if success close modal and reload ajax table
+                       $('#myModalUpdate').modal('hide');
+                       reload_table();// for reload a page
+                    },
+                    error: function (jqXHR, textStatus, errorThrown)
+                    {
+                        alert('Error adding / update data');
+                    }
+                });
             }
-        });
       });
     }
 

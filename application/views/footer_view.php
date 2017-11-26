@@ -3,6 +3,8 @@
     <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
   <script src="<?php echo base_url() ?>assets/dist/js/jquery.min.js" type="text/javascript"></script>
   <script src="<?php echo base_url('assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js')?>"></script>
+  <script src="<?php echo base_url() ?>assets/dist/js/jquery.validate.min.js"></script>
+  <script src="<?php echo base_url() ?>assets/dist/js/additional-methods.min.js"></script>
 
   <script src="<?php echo base_url() ?>assets/dist/js/bootstrap.min.js" type="text/javascript"></script>
 
