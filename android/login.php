@@ -9,9 +9,9 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
  $username = htmlspecialchars($_POST['username']);
  $password = htmlspecialchars($_POST['password']);
 
- $encrypted_password = password_verify($password, $hash);// encrypted password
+ $encrypted_password = md5($password);// encrypted password
         
- $sql = $MySQLiconn->query("SELECT * FROM user_android WHERE username='$username' AND password='$password'");
+ $sql = $MySQLiconn->query("SELECT * FROM user_android WHERE username='$username' AND password='$encrypted_password'");
 
  if(mysqli_num_rows($sql) > 0){
   while($row = $sql->fetch_array()){

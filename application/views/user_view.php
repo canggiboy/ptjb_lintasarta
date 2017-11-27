@@ -174,7 +174,7 @@
                                                 <div class="col-md-8 col-md-offset-2">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Password</label>
-                                                        <input required type="password" name="password" class="form-control">
+                                                        <input required type="password" name="password" id="password" class="form-control">
                                                     </div>
                                                 </div>
                                             </div>
@@ -406,8 +406,8 @@
                 });
                 $("#form_add").validate({
                            rules: {
-                               password: { 
-                                 required: true,
+                               password: {
+                                    required: true, 
                                     minlength: 6,
                                     maxlength: 10,
 
